@@ -1,0 +1,10 @@
+# airflow-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-configmap
+  namespace: airflow
+data:
+  airflow.cfg: |
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres:5432/$(POSTGRES_DB)
+    

@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  list-deployments:
+    cmd: "kubectl get deployments -n airflow"
+
+  list-services:
+    cmd: "kubectl get services -n airflow"
+
+  list-jobs:
+    cmd: "kubectl get jobs -n airflow"
+
+  list-pods:
+    cmd: "kubectl get pods -n airflow"

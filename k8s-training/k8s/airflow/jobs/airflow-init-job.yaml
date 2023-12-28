@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: airflow-init-job
+  namespace: airflow
+spec:
+  template:
+    metadata:
+      name: airflow-init-pod
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: airflow-init-container
+          image: apache/airflow:latest 
+          envFrom:
+            - secretRef:
+                name: postgres-credentials
+          volumeMounts:
+            - name: airflow-config
+              mountPath: /etc/airflow
+          command:
+            - "/bin/bash"
+            - "-c"
+            - |
+              # Initialize the Airflow database
+              airflow db init
+
+              # Create an admin user
+              airflow users create \
+                -u admin \
+                -f Admin \
+                -l User \
+                -r Admin \
+                -p admin \
+                -e admin@example.com
+
+              echo "Airflow initialization completed."
+      volumes:
+        - name: airflow-config
+          configMap:
+            name: airflow-configmap
+
+  backoffLimit: 1
