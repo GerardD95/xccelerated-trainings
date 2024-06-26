@@ -3,8 +3,8 @@
         - Replaced the CityStats class with a list data structure.     
 
     Execution Time (10m rows):         
-        - cpython: 7.108697833027691 
-        - pypy: 3.6854527500690892 
+        - cpython:  7.108697833027691 
+        - pypy:     3.6854527500690892 
 """
 
 def main(file_path: str) -> dict: 

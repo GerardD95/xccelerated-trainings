@@ -1,29 +1,30 @@
 """
     Update:
-        - Replaced the float() conversion with int() directly by locating the index.
+        - Replaced the cities dictionary with a defaultdict.
 
     Execution Time (10m rows): 
-        - cpython:  7.969962834031321
-        - pypy:     1.77662079106085
+        - cpython:  7.643246082938276
+        - pypy:     1.6451830830192193
 """
 
+from collections import defaultdict
+
 def main(file_path: str) -> dict:
-    cities = {}
+    cities = defaultdict(lambda: [0] * 4)
 
     with open(file_path, "rb") as f:
+
         for line in f:
             idx = line.index(b";")
             city = line[:idx]
             measurement = int(line[idx+1:-3] + line[-2:-1])
 
-            if city in cities:
-                city_stats = cities[city]
-                city_stats[0] = min(city_stats[0], measurement)
-                city_stats[1] = max(city_stats[1], measurement)
-                city_stats[2] += measurement
-                city_stats[3] += 1
-            else:
-                cities[city] = [measurement, measurement, measurement, 1]
+            city_stats = cities[city]
+            city_stats[0] = min(city_stats[0], measurement)
+            city_stats[1] = max(city_stats[1], measurement)
+            city_stats[2] += measurement
+            city_stats[3] += 1
+
     return cities
 
 

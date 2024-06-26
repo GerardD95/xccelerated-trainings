@@ -3,8 +3,8 @@
         - Using a CityStats class to hold the inplace updated min, max, sum and count values.
 
     Execution Time (10m rows): 
-        - cpython: 7.0134523750748485
-        - pypy: 4.09423995797988
+        - cpython:  7.0134523750748485
+        - pypy:     4.09423995797988
 """
 
 from collections import defaultdict

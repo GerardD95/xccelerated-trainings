@@ -3,8 +3,8 @@
         - Replaced read mode from "r" to "rb" to read the file in as bytes.
 
     Execution Time (10m rows):         
-        - cpython: 5.833786000031978 
-        - pypy: 2.723383417003788 
+        - cpython:  5.833786000031978 
+        - pypy:     2.723383417003788 
 """
 
 def main(file_path: str) -> dict: 
