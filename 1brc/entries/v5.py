@@ -1,6 +1,7 @@
 """
     Update:
         - Replaced the cities dictionary with a defaultdict.
+        - Used array.array to store the city stats instead of a list.
 
     Execution Time (10m rows): 
         - cpython:  7.643246082938276
@@ -8,9 +9,10 @@
 """
 
 from collections import defaultdict
+import array
 
 def main(file_path: str) -> dict:
-    cities = defaultdict(lambda: [0] * 4)
+    cities = defaultdict(lambda: array.array('i', [int()] * 4))
 
     with open(file_path, "rb") as f:
 
